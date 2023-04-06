@@ -22,8 +22,13 @@ public class RatingController : ControllerBase
 
     [HttpGet]
     [OutputCache(PolicyName = "Expire12Hours")]
-    public async Task<ShieldsEndpointResponse> GetMicrosoftStoreRating([FromQuery] string storeId, [FromQuery] string? market = null)
+    public async Task<ShieldsEndpointResponse> GetMicrosoftStoreRating([FromQuery] string? storeId, [FromQuery] string? market = null)
     {
+        if (string.IsNullOrEmpty(storeId))
+        {
+            return ShieldsEndpointResponse.Error(@"You need to specify a ""storeId"" in query");
+        }
+
         Market? marketEnum = null;
 
         if (!string.IsNullOrEmpty(market))
@@ -34,30 +39,21 @@ public class RatingController : ControllerBase
             }
             else
             {
-                return new ShieldsEndpointResponse(
-                    "Error",
-                    $@"Invalid market ""{market}""",
-                    IsError: true
-                );
+                return ShieldsEndpointResponse.Error($@"Invalid market ""{market}""");
             }
         }
 
-        double? rating = await microsoftStoreService.GetAppRating(storeId, marketEnum);
+        MicrosoftStoreService.AppRating? appRating = await microsoftStoreService.GetAppRating(storeId, marketEnum);
 
-        if (rating is not null)
+        if (appRating is not null)
         {
-            return new ShieldsEndpointResponse(
-                "Microsoft Store",
-                $"Rating {((double)rating).ToString("F2")}"
-            );
+            string averageRating = ((double)appRating.AverageRating).ToString("F1");
+
+            return ShieldsEndpointResponse.Ok("rating", $"{averageRating}/5 ({appRating.RatingCount})");
         }
         else
         {
-            return new ShieldsEndpointResponse(
-                "Error",
-                @$"App with ID ""{storeId}"" not found",
-                IsError: true
-            );
+            return ShieldsEndpointResponse.Error(@$"App with ID ""{storeId}"" not found");
         }
     }
 }

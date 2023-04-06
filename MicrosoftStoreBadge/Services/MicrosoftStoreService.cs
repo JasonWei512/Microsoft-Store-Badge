@@ -5,7 +5,9 @@ namespace MicrosoftStoreBadge.Services;
 
 public class MicrosoftStoreService
 {
-    public async Task<double?> GetAppRating(string storeId, Market? market = null)
+    public record AppRating(double AverageRating, long RatingCount);
+
+    public async Task<AppRating?> GetAppRating(string storeId, Market? market = null)
     {
         DisplayCatalogHandler dcatHandler = new(DCatEndpoint.Production, new Locale(market ?? Market.US, Lang.en, true));
 
@@ -21,11 +23,11 @@ public class MicrosoftStoreService
             .Select(x => (x.AverageRating, x.RatingCount))
             .ToList();
 
-        double averageRating =
-            ratings.Sum(x => x.averageRating * x.ratingCount)
-            /
-            ratings.Sum(x => x.ratingCount);
+        double totalRating = ratings.Sum(x => x.averageRating * x.ratingCount);
+        long ratingCount = ratings.Sum(x => x.ratingCount);
 
-        return averageRating;
+        double averageRating = totalRating / ratingCount;
+
+        return new AppRating(averageRating, ratingCount);
     }
 }
