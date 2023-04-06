@@ -7,6 +7,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
+COPY ["Dependencies/StoreLib/StoreLib/StoreLib.csproj", "Dependencies/StoreLib/StoreLib/"]
+RUN dotnet restore "Dependencies/StoreLib/StoreLib/StoreLib.csproj"
 COPY ["MicrosoftStoreBadge/MicrosoftStoreBadge.csproj", "MicrosoftStoreBadge/"]
 RUN dotnet restore "MicrosoftStoreBadge/MicrosoftStoreBadge.csproj"
 COPY . .
