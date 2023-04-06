@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
 using MicrosoftStoreBadge.Models;
 using MicrosoftStoreBadge.Services;
-using StoreLib.Models;
 using StoreLib.Services;
 
 namespace MicrosoftStoreBadge.Controllers;
