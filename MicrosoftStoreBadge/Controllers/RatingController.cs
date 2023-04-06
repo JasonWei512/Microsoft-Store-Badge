@@ -47,7 +47,10 @@ public class RatingController : ControllerBase
 
         if (appRating is not null)
         {
-            string averageRating = appRating.AverageRating.ToString("F1");  // 3.1415926 -> 3.1
+            string averageRating = double.IsNaN(appRating.AverageRating) ?
+                "~" :   // If no one rates the app, appRating.AverageRating will be NaN
+                appRating.AverageRating.ToString("F1"); // 3.1415926 -> 3.1
+
             string ratingCount = ((double)appRating.RatingCount).ToMetric(decimals: 1); // 12345 -> 12.3k
 
             return ShieldsEndpointResponse.Ok("rating", $"{averageRating}/5 ({ratingCount})");
