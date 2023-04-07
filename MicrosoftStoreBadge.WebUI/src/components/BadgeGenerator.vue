@@ -27,9 +27,9 @@ const message = useMessage();
 
 const storeLinkPreffix = "https://www.microsoft.com/store/productId/";
 
-let storeId: Ref<string> = ref("");
+const storeId: Ref<string> = ref("");
 
-let market: Ref<string> = ref("US");
+const market: Ref<string> = ref("US");
 const marketOptions: SelectMixedOption[] = [
   "US",
   "AD",
@@ -275,7 +275,7 @@ const marketOptions: SelectMixedOption[] = [
   "ZW",
 ].map((x) => ({ value: x, label: x }));
 
-let style: Ref<string> = ref("flat");
+const style: Ref<string> = ref("flat");
 const styleOptions: SelectMixedOption[] = [
   {
     label: "Plastic",
@@ -299,9 +299,9 @@ const styleOptions: SelectMixedOption[] = [
   },
 ];
 
-let label: Ref<string | null> = ref(null);
+const label: Ref<string | null> = ref(null);
 
-let color: Ref<string> = ref("brightgreen");
+const color: Ref<string> = ref("brightgreen");
 const colorOptions: SelectMixedOption[] = [
   {
     label: "Bright Green",
@@ -341,7 +341,7 @@ const colorOptions: SelectMixedOption[] = [
   },
 ];
 
-let logo: Ref<string | null> = ref(null);
+const logo: Ref<string | null> = ref(null);
 
 const badgeImageUrl = computed(() =>
   urlcat("https://img.shields.io", "/endpoint", {
@@ -397,7 +397,7 @@ function copyBadgeMarkdown() {
                   <tr>
                     <td>
                       <n-popover trigger="hover">
-                        <template #trigger> Store ID ﹖ </template>
+                        <template #trigger> Store ID ﹖</template>
                         How to get the store ID: <br />
                         1. Open Microsoft Store and go to the app page. <br />
                         2. Click the share button and select "copy link". <br />
@@ -421,7 +421,7 @@ function copyBadgeMarkdown() {
                   <tr>
                     <td>
                       <n-popover trigger="hover">
-                        <template #trigger> Market ﹖ </template>
+                        <template #trigger> Market ﹖</template>
                         Change this if your app is not published in USA.
                       </n-popover>
                     </td>
@@ -466,7 +466,7 @@ function copyBadgeMarkdown() {
                   <tr>
                     <td>
                       <n-popover trigger="hover">
-                        <template #trigger> Logo ﹖ </template>
+                        <template #trigger> Logo ﹖</template>
                         One of the named logos supported by
                         <a href="https://shields.io/" target="_blank">Shields</a> or
                         <a href="https://simpleicons.org/" target="_blank">simple-icons</a>.
@@ -492,9 +492,9 @@ function copyBadgeMarkdown() {
 
               <h3 class="subtitle">
                 HTML
-                <n-button size="small" round @click="copyBadgeHtml">Copy</n-button>
+                <n-button class="copy-button" size="small" round @click="copyBadgeHtml">Copy</n-button>
               </h3>
-              <n-scrollbar :x-scrollable="true" style="padding-bottom: 1rem">
+              <n-scrollbar :x-scrollable="true" class="codeblock-scrollbar">
                 <n-code :code="badgeHtml" language="html" />
               </n-scrollbar>
 
@@ -502,9 +502,9 @@ function copyBadgeMarkdown() {
 
               <h3 class="subtitle">
                 Markdown
-                <n-button size="small" round @click="copyBadgeMarkdown">Copy</n-button>
+                <n-button class="copy-button" size="small" round @click="copyBadgeMarkdown">Copy</n-button>
               </h3>
-              <n-scrollbar :x-scrollable="true" style="padding-bottom: 1rem">
+              <n-scrollbar class="codeblock-scrollbar" :x-scrollable="true">
                 <n-code :code="badgeMarkdown" language="markdown" />
               </n-scrollbar>
             </n-space>
@@ -527,8 +527,15 @@ function copyBadgeMarkdown() {
 </template>
 
 <style scoped>
-.n-scrollbar-container {
-  padding-bottom: 1rem;
+.title {
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 1.2rem;
 }
 
 .n-divider {
@@ -536,24 +543,15 @@ function copyBadgeMarkdown() {
   margin-bottom: 0.2rem;
 }
 
-.title {
-  font-weight: 512;
-  text-align: center;
-  margin-bottom: 2rem;
+.copy-button {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
-.footer {
-  text-align: center;
-}
-
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
+:deep(.codeblock-scrollbar) {
+  background-color: rgba(0, 0, 0, 0.025);
+  padding: 1rem;
+  border-radius: 6px;
 }
 
 .vertical-center {
