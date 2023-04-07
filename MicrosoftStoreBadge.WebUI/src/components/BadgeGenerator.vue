@@ -277,27 +277,69 @@ const marketOptions: SelectMixedOption[] = [
 
 let style: Ref<string> = ref("flat");
 const styleOptions: SelectMixedOption[] = [
-  "plastic",
-  "flat",
-  "flat-square",
-  "for-the-badge",
-  "social",
-].map((x) => ({ value: x, label: x }));
+{
+    label: "Plastic",
+    value: "plastic"
+  },
+  {
+    label: "Flat",
+    value: "flat"
+  },
+  {
+    label: "Flat Square",
+    value: "flat-square"
+  },
+  {
+    label: "For the Badge",
+    value: "for-the-badge"
+  },
+  {
+    label: "Social",
+    value: "social"
+  },
+];
 
 let label: Ref<string | null> = ref(null);
 
-let color: Ref<string | null> = ref(null);
+let color: Ref<string> = ref("brightgreen");
 const colorOptions: SelectMixedOption[] = [
-  "brightgreen",
-  "green",
-  "yellowgreen",
-  "yellow",
-  "orange",
-  "red",
-  "blue",
-  "lightgrey",
-  "blueviolet",
-].map((x) => ({ value: x, label: x }));
+{
+    label: "Bright Green",
+    value: "brightgreen"
+  },
+  {
+    label: "Green",
+    value: "green"
+  },
+  {
+    label: "Yellow Green",
+    value: "yellowgreen"
+  },
+  {
+    label: "Yellow",
+    value: "yellow"
+  },
+  {
+    label: "Orange",
+    value: "orange"
+  },
+  {
+    label: "Red",
+    value: "red"
+  },
+  {
+    label: "Blue",
+    value: "blue"
+  },
+  {
+    label: "Light Grey",
+    value: "lightgrey"
+  },
+  {
+    label: "Blue Violet",
+    value: "blueviolet"
+  }
+];
 
 let logo: Ref<string | null> = ref(null);
 
@@ -388,6 +430,7 @@ function copyBadgeMarkdown() {
                         :options="marketOptions"
                         v-model:value="market"
                         :consistent-menu-width="false"
+                        :show-checkmark="false"
                       />
                     </td>
                   </tr>
@@ -398,6 +441,7 @@ function copyBadgeMarkdown() {
                         :options="styleOptions"
                         v-model:value="style"
                         :consistent-menu-width="false"
+                        :show-checkmark="false"
                       />
                     </td>
                   </tr>
@@ -415,6 +459,7 @@ function copyBadgeMarkdown() {
                         v-model:value="color"
                         placeholder="Color"
                         :consistent-menu-width="false"
+                        :show-checkmark="false"
                       />
                     </td>
                   </tr>
