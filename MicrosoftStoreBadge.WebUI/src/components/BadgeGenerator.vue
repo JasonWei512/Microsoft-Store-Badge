@@ -448,7 +448,7 @@ function copyBadgeMarkdown() {
                   <tr>
                     <td>Label</td>
                     <td>
-                      <n-input v-model:value="label" type="text" placeholder="Label on the left" />
+                      <n-input v-model:value="label" type="text" placeholder="Label on the left side of the badge" />
                     </td>
                   </tr>
                   <tr>
