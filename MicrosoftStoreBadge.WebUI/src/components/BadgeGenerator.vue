@@ -385,7 +385,7 @@ function copyBadgeMarkdown() {
   <n-space vertical size="large">
     <n-layout>
       <n-layout-header>
-        <h2 class="title">Microsoft Store Badge Generator</h2>
+        <h1 class="title">Microsoft Store Badge Generator</h1>
       </n-layout-header>
 
       <n-layout-content>
@@ -527,6 +527,14 @@ function copyBadgeMarkdown() {
 </template>
 
 <style scoped>
+h1 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
 .title {
   font-weight: bolder;
   text-align: center;
@@ -535,7 +543,6 @@ function copyBadgeMarkdown() {
 
 .subtitle {
   font-weight: 400;
-  font-size: 1.2rem;
 }
 
 .n-divider {
