@@ -3,7 +3,7 @@
 # 2. Deploy it to Fly.io if current branch is "main"
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: Test and deploy REST API to Fly.io
+name: 'REST API: Test and deploy to Fly.io'
 on: [push, pull_request]
 
 jobs:
