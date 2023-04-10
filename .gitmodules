@@ -1,3 +1,3 @@
 [submodule "Dependencies/StoreLib"]
-	path = Dependencies/StoreLib
+	path = WebAPI/Dependencies/StoreLib
 	url = https://github.com/StoreDev/StoreLib

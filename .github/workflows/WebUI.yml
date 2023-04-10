@@ -30,6 +30,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./WebUI
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -46,12 +50,11 @@ jobs:
         run: |
           npm install
           npm run build
-        working-directory: ./MicrosoftStoreBadge.WebUI
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './MicrosoftStoreBadge.WebUI/dist'
+          path: './WebUI/dist'
           
       - name: Deploy to GitHub Pages
         id: deployment
