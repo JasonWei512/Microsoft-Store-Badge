@@ -198,6 +198,21 @@ function copyBadgeMarkdown() {
                         will be copied to clipboard. <br />
                         4. The last segment <span style="font-weight: bold">9NF7JTB3B17P</span> is
                         the store ID. <br />
+                        <br />
+                        Note that unpackaged Win32 apps whose IDs start with "XP" are not supported
+                        at the moment. <br />
+                        For example, you can't generate badges for
+                        <a
+                          href="https://apps.microsoft.com/store/detail/XP9KHM4BK9FZ7Q"
+                          target="_blank"
+                          >VSCode</a
+                        >
+                        and
+                        <a
+                          href="https://apps.microsoft.com/store/detail/XP89DCGQ3K6VLD"
+                          target="_blank"
+                          >PowerToys</a
+                        >.
                       </n-popover>
                     </td>
                     <td>
