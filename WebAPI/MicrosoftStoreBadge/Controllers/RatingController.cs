@@ -1,6 +1,6 @@
 using Humanizer;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OutputCaching;
+using Microsoft.Extensions.Caching.Distributed;
 using MicrosoftStoreBadge.Models;
 using MicrosoftStoreBadge.Services;
 using StoreLib.Services;
@@ -13,15 +13,16 @@ public class RatingController : ControllerBase
 {
     private readonly ILogger<RatingController> logger;
     private readonly MicrosoftStoreService microsoftStoreService;
+    private readonly IDistributedCache cache;
 
-    public RatingController(ILogger<RatingController> logger, MicrosoftStoreService microsoftStoreService)
+    public RatingController(ILogger<RatingController> logger, MicrosoftStoreService microsoftStoreService, IDistributedCache cache)
     {
         this.logger = logger;
         this.microsoftStoreService = microsoftStoreService;
+        this.cache = cache;
     }
 
     [HttpGet]
-    [OutputCache(PolicyName = "Expire12Hours")]
     public async Task<ShieldsEndpointResponse> GetMicrosoftStoreRating([FromQuery] string? storeId, [FromQuery] string? market = null)
     {
         if (string.IsNullOrEmpty(storeId))
@@ -43,21 +44,33 @@ public class RatingController : ControllerBase
             }
         }
 
+        string cacheKey = $"rating:{storeId}";
+
+        if (await cache.GetStringAsync(cacheKey) is string cachedMessage)
+        {
+            return ShieldsEndpointResponse.Ok("rating", cachedMessage);
+        }
+
         MicrosoftStoreService.AppRating? appRating = await microsoftStoreService.GetAppRating(storeId, marketEnum);
 
-        if (appRating is not null)
-        {
-            string averageRating = double.IsNaN(appRating.AverageRating) ?
-                "~" :   // If no one rates the app, appRating.AverageRating will be NaN
-                appRating.AverageRating.ToString("F1"); // 3.1415926 -> 3.1
-
-            string ratingCount = ((double)appRating.RatingCount).ToMetric(decimals: 1); // 12345 -> 12.3k
-
-            return ShieldsEndpointResponse.Ok("rating", $"{averageRating}/5 ({ratingCount})");
-        }
-        else
+        if (appRating is null)
         {
             return ShieldsEndpointResponse.Error(@$"App with ID ""{storeId}"" not found");
         }
+
+        string averageRating = double.IsNaN(appRating.AverageRating) ?
+            "~" :   // If no one rates the app, appRating.AverageRating will be NaN
+            appRating.AverageRating.ToString("F1"); // 3.1415926 -> 3.1
+
+        string ratingCount = ((double)appRating.RatingCount).ToMetric(decimals: 1); // 12345 -> 12.3k
+
+        string message = $"{averageRating}/5 ({ratingCount})";
+
+        _ = cache.SetStringAsync(cacheKey, message, new DistributedCacheEntryOptions()
+        {
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(12)
+        });
+
+        return ShieldsEndpointResponse.Ok("rating", message);
     }
 }

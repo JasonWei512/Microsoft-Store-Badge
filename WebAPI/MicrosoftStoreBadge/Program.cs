@@ -14,10 +14,7 @@ services.AddControllers().AddJsonOptions(config =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
-services.AddOutputCache(config =>
-{
-    config.AddPolicy("Expire12Hours", builder => builder.Expire(TimeSpan.FromHours(12)).SetVaryByQuery("*"));
-});
+services.AddDistributedMemoryCache();
 
 services.AddScoped<MicrosoftStoreService>();
 
@@ -31,8 +28,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseOutputCache();
 
 app.UseAuthorization();
 
