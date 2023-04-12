@@ -144,6 +144,15 @@ const badgeImageUrl = computed(() =>
 
 const storeLink = computed(() => `${storeLinkPreffix}${storeId.value}`);
 
+const badgeMarkdown = computed(
+  () => `[![${label.value ?? ""}](${badgeImageUrl.value})](${storeLink.value})`
+);
+
+function copyBadgeMarkdown() {
+  copy(badgeMarkdown.value);
+  message.success("Markdown copied to clipboard!");
+}
+
 const badgeHtml = computed(
   () =>
     `<a href="${storeLink.value}" target="_blank">
@@ -152,18 +161,9 @@ const badgeHtml = computed(
 `
 );
 
-const badgeMarkdown = computed(
-  () => `[![${label.value ?? ""}](${badgeImageUrl.value})](${storeLink.value})`
-);
-
 function copyBadgeHtml() {
   copy(badgeHtml.value);
   message.success("HTML copied to clipboard!");
-}
-
-function copyBadgeMarkdown() {
-  copy(badgeMarkdown.value);
-  message.success("Markdown copied to clipboard!");
 }
 </script>
 
@@ -296,18 +296,6 @@ function copyBadgeMarkdown() {
               <n-divider />
 
               <h3 class="subtitle">
-                HTML
-                <n-button class="copy-button" size="small" round @click="copyBadgeHtml"
-                  >Copy</n-button
-                >
-              </h3>
-              <n-scrollbar :x-scrollable="true" class="codeblock-scrollbar">
-                <n-code :code="badgeHtml" language="html" />
-              </n-scrollbar>
-
-              <n-divider />
-
-              <h3 class="subtitle">
                 Markdown
                 <n-button class="copy-button" size="small" round @click="copyBadgeMarkdown"
                   >Copy</n-button
@@ -315,6 +303,18 @@ function copyBadgeMarkdown() {
               </h3>
               <n-scrollbar class="codeblock-scrollbar" :x-scrollable="true">
                 <n-code :code="badgeMarkdown" language="markdown" />
+              </n-scrollbar>
+
+              <n-divider />
+
+              <h3 class="subtitle">
+                HTML
+                <n-button class="copy-button" size="small" round @click="copyBadgeHtml"
+                  >Copy</n-button
+                >
+              </h3>
+              <n-scrollbar :x-scrollable="true" class="codeblock-scrollbar">
+                <n-code :code="badgeHtml" language="html" />
               </n-scrollbar>
             </n-space>
           </n-grid-item>
