@@ -19,12 +19,15 @@ public class MicrosoftStoreService
         }
 
         List<(double averageRating, long ratingCount)> ratings = dcatHandler.ProductListing.Product.MarketProperties
-            .SelectMany(x => x.UsageData)
-            .Select(x => (x.AverageRating, x.RatingCount))
+            .Select(
+                market => market.UsageData.FirstOrDefault(usage => usage.AggregateTimeSpan == "AllTime")
+            )
+            .Where(usage => usage is not null)
+            .Select(usage => (usage!.AverageRating, usage!.RatingCount))
             .ToList();
 
-        double totalRating = ratings.Sum(x => x.averageRating * x.ratingCount);
-        long ratingCount = ratings.Sum(x => x.ratingCount);
+        double totalRating = ratings.Sum(r => r.averageRating * r.ratingCount);
+        long ratingCount = ratings.Sum(r => r.ratingCount);
 
         double averageRating = totalRating / ratingCount;
 

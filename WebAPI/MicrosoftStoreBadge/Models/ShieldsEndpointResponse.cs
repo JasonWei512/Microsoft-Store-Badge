@@ -20,9 +20,9 @@ public class ShieldsEndpointResponse
         this.IsError = isError;
     }
 
-    public static ShieldsEndpointResponse Ok(string label, string errorMessage, Color color = Color.BrightGreen)
+    public static ShieldsEndpointResponse Ok(string label, string message, Color color = Color.BrightGreen)
     {
-        return new ShieldsEndpointResponse(label, errorMessage, color);
+        return new ShieldsEndpointResponse(label, message, color);
     }
 
     public static ShieldsEndpointResponse Error(string errorMessage)
