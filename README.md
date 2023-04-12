@@ -20,6 +20,24 @@ The rating on badge will be updated every 12 hours.
 
 [![Hi-Fi Rush](https://img.shields.io/endpoint?url=https%3A%2F%2Fmicrosoft-store-badge.fly.dev%2Fapi%2Frating%3FstoreId%3D9NFTC552K3GJ%26market%3DUS&style=for-the-badge&label=Hi-Fi+Rush&color=brightgreen&logo=Xbox)](https://www.microsoft.com/store/productId/9NFTC552K3GJ)
 
+# How does it work
+
+- The [WebAPI](./WebAPI/) folder:
+
+  - An ASP.NET Core web API providing app ratings
+
+  - Uses [StoreLib](https://github.com/StoreDev/StoreLib) to get app rating
+
+  - The API response is consumed by [Shields.IO](https://shields.io) to generate an [endpoint badge](https://shields.io/endpoint)
+
+  - Code on `main` branch will be deployed to [Fly.io](https://fly.io)
+
+- The [WebUI](./WebUI/) folder:
+
+  - A Vue web app to help you generate badges
+
+  - Code on `main` branch will be deployed to GitHub Pages
+
 # Known issues
 
 Due to [StoreLib](https://github.com/StoreDev/StoreLib)'s limitation, generating badges for unpackaged Win32 apps (like [PowerToys](https://apps.microsoft.com/store/detail/XP89DCGQ3K6VLD) and [VSCode](https://apps.microsoft.com/store/detail/XP9KHM4BK9FZ7Q)) is not supported.
