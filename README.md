@@ -30,13 +30,13 @@ The rating on badge will be updated every 12 hours.
 
   - The API response is consumed by [Shields.IO](https://shields.io) to generate an [endpoint badge](https://shields.io/endpoint)
 
-  - Code on `main` branch will be deployed to [Fly.io](https://fly.io)
+  - Code on `main` branch will be deployed to [Fly.io](https://fly.io) automatically
 
 - The [WebUI](./WebUI/) folder:
 
   - A Vue web app to help you generate badges
 
-  - Code on `main` branch will be deployed to GitHub Pages
+  - Code on `main` branch will be deployed to GitHub Pages automatically
 
 # Known issues
 
@@ -45,3 +45,9 @@ Due to [StoreLib](https://github.com/StoreDev/StoreLib)'s limitation, generating
 # Acknowledgements
 
 - Inspired by [infinitepower18/msstore-shields](https://github.com/infinitepower18/msstore-shields)
+
+# ✨ More Microsoft Store dev tools
+
+- [JasonWei512/Upload-Microsoft-Store-MSIX-Package-to-GitHub-Release](https://github.com/JasonWei512/Upload-Microsoft-Store-MSIX-Package-to-GitHub-Release)
+  
+  🤖 A GitHub action to upload Microsoft Store-signed MSIX packages to GitHub release.
