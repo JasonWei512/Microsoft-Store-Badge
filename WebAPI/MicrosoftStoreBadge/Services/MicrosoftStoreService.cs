@@ -5,7 +5,14 @@ namespace MicrosoftStoreBadge.Services;
 
 public class MicrosoftStoreService
 {
+    private readonly ILogger<MicrosoftStoreService> logger;
+
     public record AppRating(double AverageRating, long RatingCount);
+
+    public MicrosoftStoreService(ILogger<MicrosoftStoreService> logger)
+    {
+        this.logger = logger;
+    }
 
     public async Task<AppRating?> GetAppRating(string storeId, Market? market = null)
     {
@@ -17,6 +24,8 @@ public class MicrosoftStoreService
         {
             return null;
         }
+
+        logger.LogInformation("Getting store rating for {appName} ({appId})", dcatHandler.ProductListing.Product.LocalizedProperties.FirstOrDefault()?.ProductTitle, storeId);
 
         List<(double averageRating, long ratingCount)> ratings = dcatHandler.ProductListing.Product.MarketProperties
             .Select(
