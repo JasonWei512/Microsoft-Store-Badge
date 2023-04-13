@@ -1,4 +1,6 @@
+using Microsoft.OpenApi.Models;
 using MicrosoftStoreBadge.Services;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -13,7 +15,12 @@ services.AddControllers().AddJsonOptions(config =>
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
-services.AddSwaggerGen();
+services.AddSwaggerGen(config =>
+{
+    config.SwaggerDoc("v1", new OpenApiInfo());
+    string xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    config.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 services.AddOutputCache(config =>
 {
     config.AddPolicy("Expire12Hours", builder => builder.Expire(TimeSpan.FromHours(12)).SetVaryByQuery("*"));
