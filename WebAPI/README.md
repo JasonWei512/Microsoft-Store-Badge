@@ -37,3 +37,7 @@
         "schemaVersion": 1
       }
       ```
+
+- ## `/`
+
+  Redirect to GitHub project page.
