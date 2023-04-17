@@ -4,7 +4,7 @@
 
 # Introduction
 
-A web app to generate a badge with rating for your Microsoft Store app.
+A web app to generate a rating badge for your Microsoft Store app.
 
 Add the badge to your GitHub README or website.
 
