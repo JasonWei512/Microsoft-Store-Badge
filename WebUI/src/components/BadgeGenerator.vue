@@ -27,7 +27,8 @@ const message = useMessage();
 
 const storeLinkPreffix = "https://apps.microsoft.com/detail/";
 
-const storeId: Ref<string> = ref("");
+const untrimmedStoreId: Ref<string> = ref("");
+const storeId = computed(() => untrimmedStoreId.value.trim());
 
 const market: Ref<string> = ref("US");
 // prettier-ignore
@@ -216,7 +217,7 @@ function copyBadgeHtml() {
                       </n-popover>
                     </td>
                     <td>
-                      <n-input v-model:value="storeId" type="text" placeholder="9NF7JTB3B17P" />
+                      <n-input v-model:value="untrimmedStoreId" type="text" placeholder="9NF7JTB3B17P" />
                     </td>
                   </tr>
                   <tr>
