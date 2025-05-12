@@ -25,7 +25,7 @@ import copy from "copy-to-clipboard";
 
 const message = useMessage();
 
-const storeLinkPreffix = "https://www.microsoft.com/store/productId/";
+const storeLinkPreffix = "https://apps.microsoft.com/detail/";
 
 const storeId: Ref<string> = ref("");
 
@@ -189,9 +189,9 @@ function copyBadgeHtml() {
                         2. Click the share button and select "copy link". <br />
                         3. A url like
                         <a
-                          href="https://www.microsoft.com/store/productId/9NF7JTB3B17P"
+                          href="https://apps.microsoft.com/detail/9NF7JTB3B17P"
                           target="_blank"
-                          >https://www.microsoft.com/store/productId/<span style="font-weight: bold"
+                          >https://apps.microsoft.com/detail/<span style="font-weight: bold"
                             >9NF7JTB3B17P</span
                           ></a
                         >

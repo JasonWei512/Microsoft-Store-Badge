@@ -12,13 +12,13 @@ The rating on badge will be updated every 12 hours.
 
 # Examples
 
-[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fmicrosoft-store-badge.fly.dev%2Fapi%2Frating%3FstoreId%3D9NF7JTB3B17P%26market%3DUS&style=flat&color=brightgreen)](https://www.microsoft.com/store/productId/9NF7JTB3B17P)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fmicrosoft-store-badge.fly.dev%2Fapi%2Frating%3FstoreId%3D9NF7JTB3B17P%26market%3DUS&style=flat&color=brightgreen)](https://apps.microsoft.com/detail/9NF7JTB3B17P)
 
-[![Ambie](https://img.shields.io/endpoint?url=https%3A%2F%2Fmicrosoft-store-badge.fly.dev%2Fapi%2Frating%3FstoreId%3D9P07XNM5CHP0%26market%3DUS&style=flat-square&label=Ambie&color=orange&logo=Windows)](https://www.microsoft.com/store/productId/9P07XNM5CHP0)
+[![Ambie](https://img.shields.io/endpoint?url=https%3A%2F%2Fmicrosoft-store-badge.fly.dev%2Fapi%2Frating%3FstoreId%3D9P07XNM5CHP0%26market%3DUS&style=flat-square&label=Ambie&color=orange&logo=Windows)](https://apps.microsoft.com/detail/9P07XNM5CHP0)
 
-[![NanaZip](https://img.shields.io/endpoint?url=https%3A%2F%2Fmicrosoft-store-badge.fly.dev%2Fapi%2Frating%3FstoreId%3D9N8G7TSCL18R%26market%3DUS&style=social&label=NanaZip&color=brightgreen&logo=)](https://www.microsoft.com/store/productId/9N8G7TSCL18R)
+[![NanaZip](https://img.shields.io/endpoint?url=https%3A%2F%2Fmicrosoft-store-badge.fly.dev%2Fapi%2Frating%3FstoreId%3D9N8G7TSCL18R%26market%3DUS&style=social&label=NanaZip&color=brightgreen&logo=)](https://apps.microsoft.com/detail/9N8G7TSCL18R)
 
-[![Hi-Fi Rush](https://img.shields.io/endpoint?url=https%3A%2F%2Fmicrosoft-store-badge.fly.dev%2Fapi%2Frating%3FstoreId%3D9NFTC552K3GJ%26market%3DUS&style=for-the-badge&label=Hi-Fi+Rush&color=brightgreen&logo=Xbox)](https://www.microsoft.com/store/productId/9NFTC552K3GJ)
+[![Hi-Fi Rush](https://img.shields.io/endpoint?url=https%3A%2F%2Fmicrosoft-store-badge.fly.dev%2Fapi%2Frating%3FstoreId%3D9NFTC552K3GJ%26market%3DUS&style=for-the-badge&label=Hi-Fi+Rush&color=brightgreen&logo=Xbox)](https://apps.microsoft.com/detail/9NFTC552K3GJ)
 
 # How does it work
 

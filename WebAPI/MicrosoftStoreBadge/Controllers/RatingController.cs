@@ -33,7 +33,7 @@ public class RatingController : ControllerBase
     /// How to get the store ID: <br />
     /// 1. Open Microsoft Store and go to the app page. <br/>
     /// 2. Click the share button and select "copy link". <br />
-    /// 3. A url like <strong>https://www.microsoft.com/store/productId/9NF7JTB3B17P</strong> will be copied to clipboard. <br/>
+    /// 3. A url like <strong>https://apps.microsoft.com/detail/9NF7JTB3B17P</strong> will be copied to clipboard. <br/>
     /// 4. The last segment <strong>9NF7JTB3B17P</strong> is the store ID. <br/>
     /// </param>
     /// <param name="market">(Optional) The default value is "US".</param>
